@@ -12,7 +12,7 @@ router.post('/logout',Logout);
 
 router.post('/updateProfile',protectRoute,UpdateProfile);
 
-router.get('/check',protectRoute,checkAuth);
+router.post('/check',protectRoute,checkAuth);
 
 
 export default router

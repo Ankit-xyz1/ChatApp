@@ -3,12 +3,14 @@ import User from '../models/user.model.js';
 
 export const protectRoute = async (req,res,next)=>{
     try {
+        console.log("working")
         const token = req.cookies.jwt;
         console.log(token);
+        console.log("working")
         if(!token){
             return res.status(400).json({
                 sucess:false,
-                message:"no token found youre not authorised"
+                message:"no token found youre not authoriasdaszed"
             });
         }
         const decode = jwt.verify(token, process.env.JWT_SECRET);
@@ -30,7 +32,9 @@ export const protectRoute = async (req,res,next)=>{
         next();
 
     } catch (error) {
+
         console.log(error);
+        return res.json({sucess:false})
     }
 
 }

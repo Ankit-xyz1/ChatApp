@@ -8,14 +8,14 @@ import cloudnary from "../lib/cloudnary.js";
 export const signup = async (req, res) => {
   //destructuring the data from client
   const { name, email, password } = req.body;
-
+  console.log(req.body)
   if (!name || !email || !password) {
     return res
       .status(400)
-      .json({ sucess: false, message: "all feilds are required" });
+      .json({ sucess: false, message: "all feilds are required" ,da:{name,email,password}});
   }
 
-  if (password.length < 8) {
+  if (password.length <= 8) {
     return res
       .status(400)
       .json({ sucess: false, message: "password should be grater than 8" });

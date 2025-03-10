@@ -9,8 +9,8 @@ export const FetchUSerSidebar = async (req, res) => {
       _id: { $ne: cLoggedInUserID },
     }).select("-password");
     return res.status(200).json({
-      sucess: false,
-      message: "internam server errorr",
+      sucess: true,
+      message: "fetched sucessfully",
       data: otherUsers,
     });
   } catch (error) {
