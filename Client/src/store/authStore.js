@@ -11,6 +11,7 @@ export const authStore = create((set) => ({
   isSigning: false,
   isLoggin: false,
   isUploadingImg:false,
+  onlineUsers : [],
 
   checkAuth: async () => {
     try {

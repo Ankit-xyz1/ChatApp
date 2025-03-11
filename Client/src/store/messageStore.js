@@ -2,12 +2,14 @@ import { toast } from "react-hot-toast";
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 
-const messageStore = create((set) => ({
-  userIsLoading: false,
+export const messageStore = create((set) => ({
+  userIsLoading: true,
   messageIsLoading: false,
   chatSelected: false,
   users: [],
   messages: [],
+  userToChatId :"",
+  messageContainerrLoading:false,
 
   //feyching all the users
   fetchUsers: async () => {
@@ -35,5 +37,18 @@ const messageStore = create((set) => ({
     } finally {
       set({ messageIsLoading: false });
     }
+  },
+  setChat : (userOBJ)=>{
+    set({chatSelected:true})
+    console.log(userOBJ);
+    set({userToChatId:userOBJ});
+    set({messageContainerrLoading:true})
+    setTimeout(() => {
+      set({messageContainerrLoading:false})
+    }, 500);
+  },
+  backFromChat : ()=>{
+    set({chatSelected:false})
+    set({userToChatId:""});
   },
 }));
