@@ -51,4 +51,13 @@ export const messageStore = create((set) => ({
     set({chatSelected:false})
     set({userToChatId:""});
   },
+  sendMessages : async(text,image,userToChatId)=>{
+    try {
+      const response = await axiosInstance.post(`message/send/${userToChatId._id}`,{text,image})
+      toast.success("message send sucesfull")
+    } catch (error) {
+      console.log(error);
+      toast.error("message not send")
+    }
+  }
 }));

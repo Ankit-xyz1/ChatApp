@@ -16,7 +16,7 @@ const MessageHeadBar = () => {
         </div>
         <div className="details w-[50%] lg:w-[30%] flex gap-3">
           <div className="profileimage h-full w-[25%]  flex justify-center items-center">
-            <div className="w-full h-full lg:w-[90%] lg:h-[90%] rounded-full overflow-hidden">
+            <div className="image relative bg-black rounded-full   h-[25px] md:h-[40px] w-[25px] md:w-[40px] flex justify-end items-end overflow-hidden  transition-all ease-in-out duration-500">
               <img
                 src={userToChatId.profilePic || "default.jpg"}
                 alt=""

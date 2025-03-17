@@ -38,8 +38,9 @@ const Sidebar = () => {
                     onClick={()=>setChat(item)}
                     >
                       <div className="users  w-full p-3 h-20 flex gap-2">
-                        <div className="userImage w-full lg:w-[22%] h-full">
-                          <div className="image h-full w-full rounded-full overflow-hidden  ">
+                        <div className="userImage w-full lg:w-[22%] h-full flex justify-center items-center">
+                          <div className="image h-[30px] md:h-[50px] w-[30px] md:w-[50px] flex border-2 rounded-full overflow-hidden  ">
+                            {/* image relative bg-black rounded-full   h-[20px] md:h-[40px] w-[20px] md:w-[40px] flex justify-end items-end overflow-hidden  transition-all ease-in-out duration-500 */}
                             <img
                               src={item.profilePic || "default.jpg"}
                               alt=""

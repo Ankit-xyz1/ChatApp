@@ -6,7 +6,7 @@ import Boxexs from "../components/Boxexs";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { isLoggin,Login } = authStore();
+  const { isLoggin,Login,checkAuth } = authStore();
   const [showPassword, setshowPassword] = useState(false);
   const [formData, setformData] = useState({
     email: "",
@@ -41,8 +41,8 @@ const Login = () => {
             </div>
             <p className="text-zinc-400">Lets gets chatting</p>
             <form onSubmit={(e) => handleSubmit(e)} className="space-y-2 mt-10">
-              <div className="email mb-4">
-                <label className="input validator">
+              <div className="email mb-4 focus:outline-none">
+                <label className="input validator focus:outline-none focus:border-none">
                   <svg
                     className="h-[1em] opacity-50"
                     xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ const Login = () => {
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                     </g>
                   </svg>
-                  <input type="email" placeholder="mail@site.com" name="email"
+                  <input type="email" className="focus:outline-none" placeholder="mail@site.com" name="email"
                     value={formData.email} onChange={handleChange} required />
                 </label>
                 <div className="validator-hint hidden">
