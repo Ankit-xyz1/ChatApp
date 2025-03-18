@@ -1,24 +1,43 @@
 import { messageStore } from "../store/messageStore";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MessagesSkeleton from "./skeleton/MessagesSkeleton";
 import MessageHeadBar from "./MessageHeadBar";
 import MessageSend from "./MessageSend";
 import { X } from "lucide-react";
+import { formatMessageTime } from "../lib/util";
 const ChatContainer = () => {
   const {
     messages,
     userToChatId,
     fetchMessages,
     messageContainerrLoading,
+    subscribeToMessage,
+    unsubscribeToMessage,
   } = messageStore();
 
   const [imageView, setimageView] = useState(false);
   const [imageSrc, setimageSrc] = useState("");
 
+
+  const chatContainerRef = useRef(null);
   useEffect(() => {
-    console.log(userToChatId._id);
+    // Scroll to the bottom when messages change
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+      console.log("i am scrroll",scroll)
+    }
+  }, [messages]);
+
+  
+  useEffect(() => {
+    subscribeToMessage()
     fetchMessages(userToChatId._id);
-  }, [userToChatId._id, fetchMessages]);
+    return ()=> unsubscribeToMessage()
+  }, [userToChatId._id, fetchMessages,subscribeToMessage,unsubscribeToMessage]);
+  
   useEffect(() => {
     console.log(messages.data);
   }, [messages]);
@@ -45,14 +64,14 @@ const ChatContainer = () => {
   return (
     <div className="flex overflow-hidden flex-col  w-full p-3">
       <MessageHeadBar />
-      <div className="messages w-full h-full overflow-auto px-3">
+      <div className="messages w-full h-full overflow-auto px-3" ref={chatContainerRef}>
         {/* <div className="chat  chat-start">
           <div className="chat-bubble rounded-lg flex flex-col gap-1">
             <img className="h-[100px] md:h-[200px] rounded" src="default.jpg" alt="not found"  />
             hello
           </div>
         </div> */}
-        {messages.data.map((message) => (
+        {messages.map((message) => (
           <>
             <div
               key={message._id}
@@ -73,6 +92,7 @@ const ChatContainer = () => {
                 )}
                 {message.text && <> {message.text}</>}
               </div>
+              <div className="chat-footer text-zinc-500">{formatMessageTime(message.createdAt)}<p className="hidden">{scroll}</p></div>
             </div>
           </>
         ))}

@@ -30,7 +30,6 @@ io.on("connection", (socket) => {
 
   // Emit updated online users list
   io.emit("onlineUsersNow", Object.values(socketToUser));
-  getUserSocketId("67cf0c6464153aa3a9fa37e5")
   socket.on("disconnect", () => {
     console.log("a user disconnected", socket.id);
 
