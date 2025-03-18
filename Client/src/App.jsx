@@ -14,10 +14,14 @@ import { themeStore } from "./store/themeStore";
 
 const App = () => {
   const {theme} = themeStore();
-  const {authUser, checkAuth,isCheckingAuth} = authStore();
+  const {authUser, checkAuth,isCheckingAuth,onlineUsers} = authStore();
   useEffect(() => {
     checkAuth();
-  }, [checkAuth])
+    console.log("i am auth",authUser)
+    console.log("online user",onlineUsers);
+    
+  }, [checkAuth,onlineUsers])
+
 
   if(isCheckingAuth  && !authUser){
     return(
@@ -28,8 +32,6 @@ const App = () => {
       </>
     )
   }
-  console.log(authUser)
-  
   return (
     <Router>
       <div data-theme={theme}>

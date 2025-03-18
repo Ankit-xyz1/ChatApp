@@ -8,7 +8,6 @@ import cloudnary from "../lib/cloudnary.js";
 export const signup = async (req, res) => {
   //destructuring the data from client
   const { name, email, password } = req.body;
-  console.log(req.body)
   if (!name || !email || !password) {
     return res
       .status(400)
@@ -32,16 +31,13 @@ export const signup = async (req, res) => {
   //creating a new user in the database
   try {
     let hash = await bcrypt.hash(password, 10);
-    console.log(hash);
     const CreatedUser = await User.create({
       name,
       email,
       password: hash,
     });
-    console.log("userCreated");
     //genrating a jwt
     const Tokenn = generateToken(CreatedUser._id, res);
-    console.log(Tokenn);
 
     //sending resposne to client
     return res.status(201).json({
@@ -124,7 +120,6 @@ export const Logout = (req, res) => {
       message: "loggedout sucess fully",
     });
   } catch (error) {
-    console.log(error);
     return res.status(400).json({
       sucess: false,
       message: "Interrnal server error",
@@ -152,7 +147,6 @@ export const UpdateProfile = async (req, res) => {
       .status(200)
       .json({ sucess: true, data: updatedUser, message: "update Sucessfull" });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       sucess: false,
       message: "Interrnal server error",
@@ -163,7 +157,6 @@ export const UpdateProfile = async (req, res) => {
 export const checkAuth = async (req,res) => {
   try {
     const id = req.user._id;  
-    console.log(id)
     const user = await User.findOne({ _id: id }).select('-password');
     res.status(200).send({
       sucess: true,
@@ -171,7 +164,6 @@ export const checkAuth = async (req,res) => {
       data: user,
     });
   } catch (error) {
-    console.log(error)
     res.status(500).send({
       sucess: false,
       message: "interrnal server error",

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import MessagesSkeleton from "./skeleton/MessagesSkeleton";
 import MessageHeadBar from "./MessageHeadBar";
 import MessageSend from "./MessageSend";
+import { X } from "lucide-react";
 const ChatContainer = () => {
   const {
     messages,

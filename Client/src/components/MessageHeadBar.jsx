@@ -26,7 +26,7 @@ const MessageHeadBar = () => {
           </div>
           <div className="name jet flex justify-start items-start py-1 flex-col">
             <p className="text-lg">{userToChatId.name}</p>
-            <p className="textarea-xs">offline</p>
+            <p className="textarea-xs">{onlineUsers.includes(userToChatId._id)? <div className="text-green-500">online</div>:<div className="">offline</div>}</p>
           </div>
         </div>
       </div>

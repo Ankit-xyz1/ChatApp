@@ -14,7 +14,6 @@ export const FetchUSerSidebar = async (req, res) => {
       data: otherUsers,
     });
   } catch (error) {
-    console.log(error + "at fetchuserrSidebar");
     return res
       .status(500)
       .json({ sucess: false, message: "internam server errorr" });
@@ -37,7 +36,6 @@ export const getMessages = async (req, res) => {
       data: messages,
     });
   } catch (error) {
-    console.log(error + "at get messages");
     res.status(500).json({
       sucess: false,
       message: "Interrnal Server error",
@@ -77,7 +75,6 @@ export const sendMesage = async (req, res) => {
       data: message,
     });
   } catch (error) {
-    console.log(error + "at sendMessage");
     return res.status(500).json({
       sucess: false,
       message: "internal server error",
