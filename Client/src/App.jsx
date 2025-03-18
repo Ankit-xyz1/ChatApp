@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import  {Toaster} from 'react-hot-toast'
 
 import Home from "./pages/Home";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup";
 import Setting from "./pages/Setting";
 import Prrrofile from "./pages/Prrrofile";
