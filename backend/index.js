@@ -6,6 +6,7 @@ import messageRoute from './src/routes/message.route.js'
 import { connectDb } from "./src/lib/db.js";
 import cors from 'cors'
 import { app , server } from './src/lib/socket.js';
+import path from 'path'
 
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(cors({
     origin:"http://localhost:5173",
 }))
 
+const __dirname = path.resolve();
 
 // routes
 app.use('/api/auth',authRoutes)
@@ -30,6 +32,14 @@ app.use('/api/message',messageRoute)
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to the Chat App API' });
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "./client/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client", "dist", "index.html"));
+  });
+}
 
 // Start server
 server.listen(port, () => {

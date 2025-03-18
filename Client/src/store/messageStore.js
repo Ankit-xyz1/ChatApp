@@ -58,7 +58,6 @@ export const messageStore = create((set, get) => ({
         { text, image }
       );
       set({ messages: [...get().messages, response.data.data] });
-      toast.success("message send sucesfull");
     } catch (error) {
       console.log(error);
       toast.error("message not send");
